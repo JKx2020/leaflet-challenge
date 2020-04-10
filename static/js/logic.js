@@ -46,16 +46,33 @@ d3.json(link, function(data) {
   L.geoJson(data, {
 
     pointToLayer: function(feature, latlng) {
-
+      console.log(feature.properties.mag)
       //pointToLayer to take the coordinates and create circle markers
       return new L.circleMarker(latlng, {
 
             radius: feature.properties.mag*10,
             color: "white",
             fillColor: chooseColor(feature.properties.mag),
-            fillOpacity: .1,
+            fillOpacity: .85,
             weight: 2
       });
+    },
+    onEachFeature: function(feature, layer) {
+      layer.on({
+        mouseover: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 1
+          });
+        },
+        mouseout: function(event) {
+          layer = event.target;
+          layer.setStyle({
+            fillOpacity: 0.5
+          });
+        },
+      });
+      layer.bindPopup("<h2>Location: "+feature.properties.place+"</h2><hr><h3> Magnitude: "+feature.properties.mag+"</h3>");
     }
   }).addTo(myMap);
 });
