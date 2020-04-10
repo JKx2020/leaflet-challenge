@@ -23,17 +23,20 @@ var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.ge
 
 //create a function which determins the color of the circles by magnatiude
 function chooseColor(mag) {
-  if (mag > 4) {
-    return "#000080";
-  };
-  if (mag > 3) {
-    return " #0000CD";
-  };
-  if (mag >= 2) {
-    return "1E90FF";
-  };
-  if (mag < 2) {
-    return "87CEFA";
+  if (mag >= 4) {
+    return "#2F4F4F";
+  }
+  else if (mag >= 3) {
+    return "#20B2AA";
+  }
+  else if (mag >= 2) {
+    return "#00FA9A";
+  }
+  else if (mag >=1) {
+    return "#7CFC00";
+  }
+  else {
+    return "#FFFF00";
   };
 };
 
@@ -53,7 +56,7 @@ d3.json(link, function(data) {
             radius: feature.properties.mag*10,
             color: "white",
             fillColor: chooseColor(feature.properties.mag),
-            fillOpacity: .85,
+            fillOpacity: .75,
             weight: 2
       });
     },
@@ -68,7 +71,7 @@ d3.json(link, function(data) {
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.5
+            fillOpacity: 0.75
           });
         },
       });
