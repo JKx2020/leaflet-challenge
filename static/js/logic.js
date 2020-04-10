@@ -41,15 +41,16 @@ function chooseColor(mag) {
 };
 
 
-//read in the earthquake data
+//read in the earthquake data geoJson
 d3.json(link, function(data) {
   console.log(data);
 
-  //add the data as markers to the map
   L.geoJson(data, {
 
+    //must use pointToLayer so that the markers can be changed to circles
     pointToLayer: function(feature, latlng) {
       console.log(feature.properties.mag)
+
       //pointToLayer to take the coordinates and create circle markers
       return new L.circleMarker(latlng, {
 
@@ -60,6 +61,9 @@ d3.json(link, function(data) {
             weight: 2
       });
     },
+
+    //Add on the event listeners
+    //mouse on & mouse off events
     onEachFeature: function(feature, layer) {
       layer.on({
         mouseover: function(event) {
@@ -75,7 +79,9 @@ d3.json(link, function(data) {
           });
         },
       });
-      layer.bindPopup("<h2>Location: "+feature.properties.place+"</h2><hr><h3> Magnitude: "+feature.properties.mag+"</h3>");
+
+      //pop-up
+      layer.bindPopup("<h1>Earthquake!!</h1><hr><h2>Location: "+feature.properties.place+"</h2><hr><h3> Magnitude: "+feature.properties.mag+"</h3>");
     }
   }).addTo(myMap);
 });
