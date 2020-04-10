@@ -19,11 +19,31 @@ var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.ge
 //create a circles variable
 var circles;
 
+//create a function which determins the color of the circles by magnatiude
+function chooseColor(mag) {
+  if (mag > 4) {
+    return "black";
+  };
+  if (mag > 3) {
+    return " navy blue";
+  };
+  if (mag >= 2) {
+    return "blue";
+  };
+  if (mag < 2) {
+    return "light blue";
+  };
+};
+
 //read in the earthquake data
 d3.json(link, function(data) {
   console.log(data);
 
-  L.geoJson(data).addTo(myMap);
+  L.geoJson(data, {
+    style: function(feature) {
+      return {color: feature.properties.mag};
+    }
+  }).addTo(myMap);
   });
 
     
