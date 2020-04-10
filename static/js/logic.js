@@ -1,4 +1,5 @@
-//Level 1: Basic Visualizations
+/////////Level 1: Basic Visualizations
+
 
 //create myMap & add in the map layer
 var myMap = L.map("map", {
@@ -13,39 +14,48 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: API_KEY
 }).addTo(myMap);
 
+
+
 //choose dataset - All Earthquakes in the past 1 Day
 var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
-//create a circles variable
-var circles;
+
 
 //create a function which determins the color of the circles by magnatiude
 function chooseColor(mag) {
   if (mag > 4) {
-    return "black";
+    return "#000080";
   };
   if (mag > 3) {
-    return " navy blue";
+    return " #0000CD";
   };
   if (mag >= 2) {
-    return "blue";
+    return "1E90FF";
   };
   if (mag < 2) {
-    return "light blue";
+    return "87CEFA";
   };
 };
+
 
 //read in the earthquake data
 d3.json(link, function(data) {
   console.log(data);
 
+  //add the data as markers to the map
   L.geoJson(data, {
-    style: function(feature) {
-      return {color: feature.properties.mag};
+
+    pointToLayer: function(feature, latlng) {
+
+      //pointToLayer to take the coordinates and create circle markers
+      return new L.circleMarker(latlng, {
+
+            radius: feature.properties.mag*10,
+            color: "white",
+            fillColor: chooseColor(feature.properties.mag),
+            fillOpacity: .1,
+            weight: 2
+      });
     }
   }).addTo(myMap);
-  });
-
-    
-
-
+});
