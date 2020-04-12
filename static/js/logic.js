@@ -91,17 +91,18 @@ d3.json(link, function(data) {
   legend.onAdd = function() {
 
     var div = L.DomUtil.create("div", "info legend");
-    var color = geojson.options.colors;
-    var categories = ["Mag >= 4", "Mag >= 3","Mag >= 2", "Mag >= 1", "Mag < 1"];
+    var categories = ["Mag 4+", "Mag 3-4","Mag 2-3", "Mag 1-2", "Mag 0-1"];
+    var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
 
-    //var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
-
-    categories.forEach(function(category) {
-      div.innerHTML +=
-        '<ii style=\"background":' + category +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
-    })
-  }   
-  legend.addTo(myMap)
+    // var legendInfo = "<h1>Earthquake Magnitude<h1>"+ 
+    // "<div class=\"labels\">" +
+    // for (i=0; i<colors.length; i++) {
+    //   div.innerHTML +=
+    //   '<ii style=\"background":' + categories[i] +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
+    // }
+  }
+  //add the legend to the map   
+  // legend.addTo(myMap)
     
 
 
