@@ -85,23 +85,23 @@ d3.json(link, function(data) {
     }
   }).addTo(myMap);
 
-  // // Set up the legend
-  // var legend = L.control({position: "bottomright"});
+  // Set up the legend
+  var legend = L.control({position: "bottomright"});
 
-  // legend.onAdd = function() {
+  legend.onAdd = function() {
 
-  //   var div = L.DomUtil.create("div", "info legend");
-  //   var color = geojson.options.colors;
-  //   var categories = ["Mag >= 4", "Mag >= 3","Mag >= 2", "Mag >= 1", "Mag < 1"];
+    var div = L.DomUtil.create("div", "info legend");
+    var color = geojson.options.colors;
+    var categories = ["Mag >= 4", "Mag >= 3","Mag >= 2", "Mag >= 1", "Mag < 1"];
 
-  //   //var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
+    //var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
 
-  //   categories.forEach(function(category) {
-  //     div.innerHTML +=
-  //       '<ii style=\"background":' + category +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
-  //   })
-  // }   
-  // legend.addTo(myMap)
+    categories.forEach(function(category) {
+      div.innerHTML +=
+        '<ii style=\"background":' + category +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
+    })
+  }   
+  legend.addTo(myMap)
     
 
 
