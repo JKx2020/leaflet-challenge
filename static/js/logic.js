@@ -23,6 +23,7 @@ var link = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.ge
 
 //create a function which determins the color of the circles by magnatiude
 function chooseColor(mag) {
+  
   if (mag >= 4) {
     return "#2F4F4F";
   }
@@ -91,6 +92,7 @@ d3.json(link, function(data) {
   legend.onAdd = function() {
 
     var div = L.DomUtil.create("div", "info legend");
+    
     var categories = ["Mag 4+", "Mag 3-4","Mag 2-3", "Mag 1-2", "Mag 0-1"];
     var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
 
