@@ -86,7 +86,7 @@ d3.json(link, function(data) {
   }).addTo(myMap);
 
   // Set up the legend
-  var legend = L.control({position: "bottomright"});
+  var legend = L.control({position: "topright"});
 
   legend.onAdd = function() {
 
@@ -94,15 +94,22 @@ d3.json(link, function(data) {
     var categories = ["Mag 4+", "Mag 3-4","Mag 2-3", "Mag 1-2", "Mag 0-1"];
     var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
 
-    var legendInfo = "<h1>Earthquake Magnitude<h1>" 
-    // "<div class=\"labels\">" +
-    // for (i=0; i<colors.length; i++) {
-    //   div.innerHTML +=
-    //   '<ii style=\"background":' + categories[i] +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
-    // }
+    var legendInfo = "<h3>Legend<h3>" +
+    "<div class=\"labels\">"
 
-    div.innerHTML =legendInfo;
-    return div;
+    
+
+    div.innerHTML = legendInfo;
+
+    for (i=0; i<colors.length; i++) {
+      div.innerHTML +=
+      '<ii style=\"background":' + categories[i] +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
+
+      div.innerHTML +=
+      '<ii style=\"background-color":' + colors[i] +'"></li>' +(colors[i] ? colors[i] +'<br>' : '+')
+    }
+
+      return div;
   }
   //add the legend to the map   
   legend.addTo(myMap)
