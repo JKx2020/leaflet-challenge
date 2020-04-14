@@ -87,28 +87,31 @@ d3.json(link, function(data) {
   }).addTo(myMap);
 
   // Set up the legend
+  //set the legend to be in the topright of the page
   var legend = L.control({position: "topright"});
 
+  //put together the legend function
   legend.onAdd = function() {
-
+    
+    //create the "info legend" class in the html
     var div = L.DomUtil.create("div", "info legend");
     
+    //list out the category lables and the colors used
     var categories = ["Mag 4+", "Mag 3-4","Mag 2-3", "Mag 1-2", "Mag 0-1"];
     var colors = ["#2F4F4F", "#20B2AA", "#00FA9A","#7CFC00","#FFFF00"];
 
-    var legendInfo = "<h3>Legend<h3>" +
-    "<div class=\"labels\">"
+    //create the header for the legend
+    var legendInfo = "<h3>Legend<h3>"
 
-    
-
+    //push the title to the legend html
     div.innerHTML = legendInfo;
 
+    //loop through the categories and push the labels and colors to the legend html
     for (i=0; i<colors.length; i++) {
-      div.innerHTML +=
-      '<ii style=\"background":' + categories[i] +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
 
       div.innerHTML +=
-      '<ii style=\"background-color":' + colors[i] +'"></li>' +(colors[i] ? colors[i] +'<br>' : '+')
+      '<li style=\"background:' + colors[i] +'"></li>' +(categories[i] ? categories[i] +'<br>' : '+')
+
     }
 
       return div;
